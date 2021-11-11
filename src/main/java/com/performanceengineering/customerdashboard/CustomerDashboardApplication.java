@@ -12,7 +12,10 @@ public class CustomerDashboardApplication {
 
 		System.out.println("welcome to the first step in learning springboot");
 
-		funfact1 funobject = new funfact1();
+		// funfact1 funobject = new funfact1();
+		// funobject.showfacts();
+
+		funfact1 funobject = cac.getBean(funfact1.class);
 		funobject.showfacts();
 	}
 

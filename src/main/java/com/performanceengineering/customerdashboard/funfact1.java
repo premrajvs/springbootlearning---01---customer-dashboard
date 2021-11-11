@@ -2,6 +2,9 @@ package com.performanceengineering.customerdashboard;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class funfact1 {
 
     private int factid;
