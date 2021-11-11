@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-CustomerDashboardApplication<customer-dashboard>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.performanceengineering.customerdashboard.CustomerDashboardApplication",
+            "projectName": "customer-dashboard",
+            "args": ""
+        }
+    ]
+}
