@@ -17,3 +17,19 @@ Now, lets create 3 objects using new operator and you can see 3 objects getting 
 Lets add a new class and add @Component annotation. Lets call a method in this call from the funfact class. Ideally, since it is marked as Component, we expect this object to be available. But, how do we guarantee that this dependency object is created before the reference class ? we cannot do that.
 
 To achieve this, we should add @Autowired annotation. This will create all dependent objects before creating the reference class object
+
+# Starting to build the micro service code that talks to other 2 services
+# Data Model
+Target response from experience layer
+{
+    id : C001
+    name : Prem
+    accounts : [
+        {id:111, type:"savings",accnumber:"1234",balance:1},
+        {id:222, type:"checking",accnumber:"5678",balance:2}
+        ....
+    ]
+}
+
+1. Create the inner data sets as a model class - accountitem.java
+2. Create a simple rest controller with hard coded List of account items
