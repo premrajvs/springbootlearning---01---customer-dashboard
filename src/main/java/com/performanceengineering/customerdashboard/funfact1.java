@@ -13,6 +13,7 @@ public class funfact1 {
     private Date facthappeningdate;
     private static int iCallCount = 0;
 
+    @Autowired
     private funfactdependecyclass dependencyobject;
 
     public funfact1() {
