@@ -10,11 +10,11 @@ public class funfact1 {
     private int factid;
     private String factinfo;
     private Date facthappeningdate;
-    private static int iObjectCount = 0;
+    private static int iCallCount = 0;
 
     public funfact1() {
-        iObjectCount++;
-        System.out.println("Fun Fact object count : " + iObjectCount);
+        iCallCount++;
+        System.out.println("Fun Fact object count : " + iCallCount);
     }
 
     public funfact1(int factid, String factinfo, Date facthappeningdate) {
