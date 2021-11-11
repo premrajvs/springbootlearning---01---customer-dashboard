@@ -2,6 +2,7 @@ package com.performanceengineering.customerdashboard;
 
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -11,6 +12,8 @@ public class funfact1 {
     private String factinfo;
     private Date facthappeningdate;
     private static int iCallCount = 0;
+
+    private funfactdependecyclass dependencyobject;
 
     public funfact1() {
         iCallCount++;
@@ -49,6 +52,7 @@ public class funfact1 {
 
     public void showfacts() {
         System.out.println("Fun Facts");
+        dependencyobject.showdependency();
     }
 
 }
