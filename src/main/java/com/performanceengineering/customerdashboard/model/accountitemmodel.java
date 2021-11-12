@@ -1,12 +1,12 @@
 package com.performanceengineering.customerdashboard.model;
 
-public class accountitem {
+public class accountitemmodel {
 
     private String accnumber;
     private String type;
     private int balance;
 
-    public accountitem(String accnumber, String type, int balance) {
+    public accountitemmodel(String accnumber, String type, int balance) {
         this.accnumber = accnumber;
         this.type = type;
         this.balance = balance;
