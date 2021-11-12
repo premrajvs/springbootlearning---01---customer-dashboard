@@ -17,13 +17,11 @@ public class CustomerDashboardApplication {
 		 * new funfact1(); funobject2.showfacts();
 		 */
 
-		funfact1 funobject = cac.getBean(funfact1.class);
-		funobject.showfacts();
-		funfact1 funobject1 = cac.getBean(funfact1.class);
-		funobject1.showfacts();
-		funfact1 funobject2 = cac.getBean(funfact1.class);
-		funobject2.showfacts();
-
+		/*
+		 * funfact1 funobject = cac.getBean(funfact1.class); funobject.showfacts();
+		 * funfact1 funobject1 = cac.getBean(funfact1.class); funobject1.showfacts();
+		 * funfact1 funobject2 = cac.getBean(funfact1.class); funobject2.showfacts();
+		 */
 	}
 
 }

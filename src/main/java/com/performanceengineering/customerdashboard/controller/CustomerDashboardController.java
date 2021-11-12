@@ -15,6 +15,6 @@ public class CustomerDashboardController {
 
     @RequestMapping("/{userId}")
     public List<accountitem> getAccountItem(@PathVariable("userId") String userid) {
-        return Collections.singletonList(new accountitem("savings", "1234", 1));
+        return Collections.singletonList(new accountitem("1234", "savings", 1));
     }
 }
