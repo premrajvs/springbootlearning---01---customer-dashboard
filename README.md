@@ -39,3 +39,7 @@ Target response from experience layer
     2.  For each of the account IDs, call account details service and get the account numbers
 
 As first step, I am hard coding the response of account transactions and account details. I am using this data to create a data object for customer dashboard. Please note that so far I am getting all transactions and I am not filtering the data set by account ID
+
+As next step, I am using traditional for loop to iterate through the account details and transactions details response to filter only the respective account IDs
+
+Next Step, replacing the for loops with Stream API

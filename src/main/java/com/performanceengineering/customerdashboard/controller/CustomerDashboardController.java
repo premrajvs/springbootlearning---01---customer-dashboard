@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.performanceengineering.customerdashboard.model.accountdetailsmodel;
 import com.performanceengineering.customerdashboard.model.accounttransactionsmodel;
@@ -28,12 +30,12 @@ public class CustomerDashboardController {
                 // accountdetailsmodel.class);
                 // Call Account Transactions Service and get list of account ID and Transaction
                 // IDs for the User ID
-
-                List<accountdetailsmodel> accountdetailssample = Arrays.asList(
+                // SAMPLE DATA
+                List<accountdetailsmodel> accountdetailscollection = Arrays.asList(
                                 new accountdetailsmodel("1", "100-100-100-100", "10-01-2021", "Platinum"),
                                 new accountdetailsmodel("2", "200-200-200-200", "20-02-2021", "gold"));
 
-                List<accounttransactionsmodel> accountstransactionssample = Arrays.asList(
+                List<accounttransactionsmodel> accountstransactionscollection = Arrays.asList(
                                 new accounttransactionsmodel("1", "tr-001-000-111", 52, "11-13-2021"),
                                 new accounttransactionsmodel("1", "tr-002-000-112", 27, "11-13-2021"),
                                 new accounttransactionsmodel("1", "tr-003-000-113", 12, "11-13-2021"),
@@ -42,8 +44,10 @@ public class CustomerDashboardController {
                                 new accounttransactionsmodel("2", "tr-003-000-113", 12, "02-02-2021"));
 
                 List<dashboarditemmodel> dashboarddatasample = Arrays.asList(new dashboarditemmodel("p01", "prem", "1",
-                                accountdetailssample.get(0).getAccnumber(), "checking", 100,
-                                accountdetailssample.get(1), accountstransactionssample));
+                                accountdetailscollection.get(0).getAccnumber(), "checking", 100,
+                                accountdetailscollection.get(1), accountstransactionscollection));
+
+                // EXTERNAL ITERATIONS
 
                 dashboarditemmodel datasample2 = new dashboarditemmodel();
                 datasample2.setAccId("1");
@@ -51,7 +55,8 @@ public class CustomerDashboardController {
                 datasample2.setType("checking");
                 datasample2.setUserID("p01");
                 datasample2.setUserName("prem");
-                for (accountdetailsmodel eachaccountdetail : accountdetailssample) {
+
+                for (accountdetailsmodel eachaccountdetail : accountdetailscollection) {
                         if (eachaccountdetail.getAccId().equalsIgnoreCase(datasample2.getAccId())) {
                                 datasample2.setAccnumber(eachaccountdetail.getAccId());
                                 datasample2.setAccountdetails(eachaccountdetail);
@@ -60,7 +65,7 @@ public class CustomerDashboardController {
                 }
 
                 List<accounttransactionsmodel> listoftransactions = new ArrayList<accounttransactionsmodel>();
-                for (accounttransactionsmodel eachtransaction : accountstransactionssample) {
+                for (accounttransactionsmodel eachtransaction : accountstransactionscollection) {
                         if (eachtransaction.getAccId().equalsIgnoreCase(datasample2.getAccId())) {
                                 accounttransactionsmodel eachtransactionnew = new accounttransactionsmodel();
                                 eachtransactionnew.setAccId(eachtransaction.getAccId());
@@ -73,10 +78,33 @@ public class CustomerDashboardController {
                         }
                         datasample2.setAccounttransactions(listoftransactions);
                 }
-                System.out.println("********************"
-                                + datasample2.getAccounttransactions().get(0).getTransactionamout());
+
+                /*
+                 * Predicate<accountdetailsmodel> predicateImplementation = new
+                 * Predicate<accountdetailsmodel>() { public boolean test(accountdetailsmodel t)
+                 * { if (t.getAccId().equalsIgnoreCase(datasample2.getAccId())) return true;
+                 * else return false; }
+                 * 
+                 * };
+                 */
+
+                // STREAM IMPLEMENTATION
+
+                Stream<accountdetailsmodel> s1 = accountdetailscollection.stream();
+                List<accountdetailsmodel> accountdetailscollection2 = s1
+                                .filter(t -> t.getAccId().equalsIgnoreCase(datasample2.getAccId()))
+                                .collect(Collectors.toList());
+
+                Stream<accounttransactionsmodel> s2 = accountstransactionscollection.stream();
+                List<accounttransactionsmodel> accountstransactionscollection2 = s2
+                                .filter(t -> t.getAccId().equalsIgnoreCase(datasample2.getAccId()))
+                                .collect(Collectors.toList());
+
                 // For each of the account IDs returned, get the list of account details -
-                return Arrays.asList(datasample2);
+                return Arrays.asList(new dashboarditemmodel("p01", "prem", "1",
+                                accountdetailscollection2.get(0).getAccnumber(), "checking", 100,
+                                accountdetailscollection2.get(0), accountstransactionscollection2));
+
                 // return Collections.singletonList(new accountitemmodel("1234", "savings", 1));
         }
 }
