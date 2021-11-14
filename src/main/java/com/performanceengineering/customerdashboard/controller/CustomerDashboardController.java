@@ -1,5 +1,6 @@
 package com.performanceengineering.customerdashboard.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -44,8 +45,38 @@ public class CustomerDashboardController {
                                 accountdetailssample.get(0).getAccnumber(), "checking", 100,
                                 accountdetailssample.get(1), accountstransactionssample));
 
+                dashboarditemmodel datasample2 = new dashboarditemmodel();
+                datasample2.setAccId("1");
+                datasample2.setBalance(100);
+                datasample2.setType("checking");
+                datasample2.setUserID("p01");
+                datasample2.setUserName("prem");
+                for (accountdetailsmodel eachaccountdetail : accountdetailssample) {
+                        if (eachaccountdetail.getAccId().equalsIgnoreCase(datasample2.getAccId())) {
+                                datasample2.setAccnumber(eachaccountdetail.getAccId());
+                                datasample2.setAccountdetails(eachaccountdetail);
+                                ;
+                        }
+                }
+
+                List<accounttransactionsmodel> listoftransactions = new ArrayList<accounttransactionsmodel>();
+                for (accounttransactionsmodel eachtransaction : accountstransactionssample) {
+                        if (eachtransaction.getAccId().equalsIgnoreCase(datasample2.getAccId())) {
+                                accounttransactionsmodel eachtransactionnew = new accounttransactionsmodel();
+                                eachtransactionnew.setAccId(eachtransaction.getAccId());
+                                eachtransactionnew.setTransactionId(eachtransaction.getTransactionId());
+                                eachtransactionnew.setTransactionamout(eachtransaction.getTransactionamout());
+                                eachtransactionnew.setTransactiondate(eachtransaction.getTransactiondate());
+
+                                listoftransactions.add(eachtransactionnew);
+                                System.out.println("Transaction added");
+                        }
+                        datasample2.setAccounttransactions(listoftransactions);
+                }
+                System.out.println("********************"
+                                + datasample2.getAccounttransactions().get(0).getTransactionamout());
                 // For each of the account IDs returned, get the list of account details -
-                return dashboarddatasample;
+                return Arrays.asList(datasample2);
                 // return Collections.singletonList(new accountitemmodel("1234", "savings", 1));
         }
 }
