@@ -33,3 +33,9 @@ Target response from experience layer
 
 1. Create the inner data sets as a model class - accountitem.java
 2. Create a simple rest controller with hard coded List of account items
+3. Hard code the response in controller and validate the project setup
+4. This being the experience layer, this is how the flow works
+    1.  Call Account Transactions service and get the list of account IDs and transaction IDs
+    2.  For each of the account IDs, call account details service and get the account numbers
+
+As first step, I am hard coding the response of customer transactions call
