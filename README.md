@@ -42,4 +42,5 @@ As first step, I am hard coding the response of account transactions and account
 
 As next step, I am using traditional for loop to iterate through the account details and transactions details response to filter only the respective account IDs
 
-Next Step, replacing the for loops with Stream API
+Next Step, replacing the for loops with Stream API.
+* So far, no rest calls are implemented. All responses are hard coded.
