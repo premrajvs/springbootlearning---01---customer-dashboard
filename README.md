@@ -39,3 +39,4 @@ Target response from experience layer
     2.  For each of the account IDs, call account details service and get the account numbers
 
 As first step, I am hard coding the response of customer transactions call
+As next step, I am using a rest template to make a call
