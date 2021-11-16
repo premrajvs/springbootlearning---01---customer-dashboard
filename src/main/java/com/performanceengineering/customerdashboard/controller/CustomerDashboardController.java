@@ -12,6 +12,11 @@ import com.performanceengineering.customerdashboard.model.accountdetailsmodel;
 import com.performanceengineering.customerdashboard.model.accounttransactionsmodel;
 import com.performanceengineering.customerdashboard.model.dashboarditemmodel;
 
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -90,7 +95,18 @@ public class CustomerDashboardController {
 
                 // STREAM IMPLEMENTATION
 
-                Stream<accountdetailsmodel> s1 = accountdetailscollection.stream();
+                // Stream<accountdetailsmodel> s1old = accountdetailscollection.stream();
+
+                RestTemplate rt = new RestTemplate();
+                String accountdetails_baseurl = "http://localhost:8092/accountdetails/";
+                HttpHeaders headers = new HttpHeaders();
+                HttpEntity<List<accountdetailsmodel>> requestEntity = new HttpEntity<>(headers);
+                ResponseEntity<List<accountdetailsmodel>> responseEntity = rt.exchange(accountdetails_baseurl + "1",
+                                HttpMethod.GET, requestEntity,
+                                new ParameterizedTypeReference<List<accountdetailsmodel>>() {
+                                });
+                Stream<accountdetailsmodel> s1 = responseEntity.getBody().stream();
+
                 List<accountdetailsmodel> accountdetailscollection2 = s1
                                 .filter(t -> t.getAccId().equalsIgnoreCase(datasample2.getAccId()))
                                 .collect(Collectors.toList());
