@@ -24,7 +24,7 @@ public class CustomerDashboardController {
         @RequestMapping("/{userId}")
         public List<dashboarditemmodel> getDashboardItems(@PathVariable("userId") String userid) {
 
-                RestTemplate rt = new RestTemplate();
+                // RestTemplate rt = new RestTemplate();
 
                 // rt.getForObject("http://localhost:8092/accountdetails/1",
                 // accountdetailsmodel.class);
@@ -91,7 +91,6 @@ public class CustomerDashboardController {
                 // STREAM IMPLEMENTATION
 
                 Stream<accountdetailsmodel> s1 = accountdetailscollection.stream();
-                // rt.getForObject("http://localhost:8092/accountdetails/1",accountdetailsmodel.class)
                 List<accountdetailsmodel> accountdetailscollection2 = s1
                                 .filter(t -> t.getAccId().equalsIgnoreCase(datasample2.getAccId()))
                                 .collect(Collectors.toList());

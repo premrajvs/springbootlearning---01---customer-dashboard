@@ -44,9 +44,3 @@ As next step, I am using traditional for loop to iterate through the account det
 
 Next Step, replacing the for loops with Stream API.
 * So far, no rest calls are implemented. All responses are hard coded.
-
-# Introduction to Rest template
-Rest Template can be implemented by 3 method
-1. exchange()
-2. ForEntity() - Example. getForEntity()
-3. ForObject() - Example. getForObject()
