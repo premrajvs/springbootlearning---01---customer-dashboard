@@ -105,13 +105,22 @@ public class CustomerDashboardController {
                                 HttpMethod.GET, requestEntity,
                                 new ParameterizedTypeReference<List<accountdetailsmodel>>() {
                                 });
-                Stream<accountdetailsmodel> s1 = responseEntity.getBody().stream();
 
+                Stream<accountdetailsmodel> s1 = responseEntity.getBody().stream();
                 List<accountdetailsmodel> accountdetailscollection2 = s1
                                 .filter(t -> t.getAccId().equalsIgnoreCase(datasample2.getAccId()))
                                 .collect(Collectors.toList());
 
-                Stream<accounttransactionsmodel> s2 = accountstransactionscollection.stream();
+                String accounttransactions_baseurl = "http://localhost:8093/accounttransactions/";
+                ResponseEntity<List<accounttransactionsmodel>> responseEntity1 = rt.exchange(
+                                accounttransactions_baseurl + "1", HttpMethod.GET, requestEntity,
+                                new ParameterizedTypeReference<List<accounttransactionsmodel>>() {
+                                });
+
+                // Stream<accounttransactionsmodel> s2old =
+                // accountstransactionscollection.stream();
+                Stream<accounttransactionsmodel> s2 = responseEntity1.getBody().stream();
+
                 List<accounttransactionsmodel> accountstransactionscollection2 = s2
                                 .filter(t -> t.getAccId().equalsIgnoreCase(datasample2.getAccId()))
                                 .collect(Collectors.toList());
