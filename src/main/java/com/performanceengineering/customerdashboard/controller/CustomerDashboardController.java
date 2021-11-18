@@ -12,6 +12,7 @@ import com.performanceengineering.customerdashboard.model.accountdetailsmodel;
 import com.performanceengineering.customerdashboard.model.accounttransactionsmodel;
 import com.performanceengineering.customerdashboard.model.dashboarditemmodel;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -25,6 +26,9 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping("/customerdashboard")
 public class CustomerDashboardController {
+
+        @Autowired
+        private RestTemplate rt;
 
         @RequestMapping("/{userId}")
         public List<dashboarditemmodel> getDashboardItems(@PathVariable("userId") String userid) {
@@ -97,7 +101,7 @@ public class CustomerDashboardController {
 
                 // Stream<accountdetailsmodel> s1old = accountdetailscollection.stream();
 
-                RestTemplate rt = new RestTemplate();
+                // RestTemplate rt = new RestTemplate();
                 String accountdetails_baseurl = "http://localhost:8092/accountdetails/";
                 HttpHeaders headers = new HttpHeaders();
                 HttpEntity<List<accountdetailsmodel>> requestEntity = new HttpEntity<>(headers);
