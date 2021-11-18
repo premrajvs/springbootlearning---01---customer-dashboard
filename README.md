@@ -50,3 +50,7 @@ Rest Template can be implemented using 3 methods
 1. ForEntity
 2. ForObject
 3. Exchange
+
+I used Exchange method so far to create the rest template and later used a bean to create the object and auto wire it.
+
+As next steps, I want to avoid using List of objects as a return type from the processor service.

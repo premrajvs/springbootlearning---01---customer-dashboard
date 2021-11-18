@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 import com.performanceengineering.customerdashboard.model.accountdetailsmodel;
 import com.performanceengineering.customerdashboard.model.accounttransactionsmodel;
 import com.performanceengineering.customerdashboard.model.dashboarditemmodel;
+import com.performanceengineering.customerdashboard.model.listofaccounttransactionsmodel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
@@ -116,16 +117,22 @@ public class CustomerDashboardController {
                                 .collect(Collectors.toList());
 
                 String accounttransactions_baseurl = "http://localhost:8093/accounttransactions/";
+
                 ResponseEntity<List<accounttransactionsmodel>> responseEntity1 = rt.exchange(
                                 accounttransactions_baseurl + "1", HttpMethod.GET, requestEntity,
                                 new ParameterizedTypeReference<List<accounttransactionsmodel>>() {
                                 });
-
+                Stream<accounttransactionsmodel> s2 = responseEntity1.getBody().stream();
                 // Stream<accounttransactionsmodel> s2old =
                 // accountstransactionscollection.stream();
-                Stream<accounttransactionsmodel> s2 = responseEntity1.getBody().stream();
 
-                List<accounttransactionsmodel> accountstransactionscollection2 = s2
+                String accounttransactionsAsObj_baseurl = "http://localhost:8093/accounttransactions/obj/";
+                ResponseEntity<listofaccounttransactionsmodel> responseEntity2 = rt.exchange(
+                                accounttransactionsAsObj_baseurl + "1", HttpMethod.GET, requestEntity,
+                                listofaccounttransactionsmodel.class);
+                Stream<accounttransactionsmodel> s2new = responseEntity1.getBody().stream();
+
+                List<accounttransactionsmodel> accountstransactionscollection2 = s2new
                                 .filter(t -> t.getAccId().equalsIgnoreCase(datasample2.getAccId()))
                                 .collect(Collectors.toList());
 
