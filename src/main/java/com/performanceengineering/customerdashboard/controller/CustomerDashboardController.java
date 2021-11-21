@@ -103,7 +103,9 @@ public class CustomerDashboardController {
                 // Stream<accountdetailsmodel> s1old = accountdetailscollection.stream();
 
                 // RestTemplate rt = new RestTemplate();
-                String accountdetails_baseurl = "http://localhost:8092/accountdetails/";
+                // String accountdetails_baseurl = "http://localhost:8092/accountdetails/";
+                String accountdetails_baseurl = "http://prc-account-details/accountdetails/";
+
                 HttpHeaders headers = new HttpHeaders();
                 HttpEntity<List<accountdetailsmodel>> requestEntity = new HttpEntity<>(headers);
                 ResponseEntity<List<accountdetailsmodel>> responseEntity = rt.exchange(accountdetails_baseurl + "1",
@@ -116,7 +118,9 @@ public class CustomerDashboardController {
                                 .filter(t -> t.getAccId().equalsIgnoreCase(datasample2.getAccId()))
                                 .collect(Collectors.toList());
 
-                String accounttransactions_baseurl = "http://localhost:8093/accounttransactions/";
+                // String accounttransactions_baseurl =
+                // "http://localhost:8093/accounttransactions/";
+                String accounttransactions_baseurl = "http://prc-account-transactions/accounttransactions/";
 
                 ResponseEntity<List<accounttransactionsmodel>> responseEntity1 = rt.exchange(
                                 accounttransactions_baseurl + "1", HttpMethod.GET, requestEntity,
@@ -126,7 +130,10 @@ public class CustomerDashboardController {
                 // Stream<accounttransactionsmodel> s2old =
                 // accountstransactionscollection.stream();
 
-                String accounttransactionsAsObj_baseurl = "http://localhost:8093/accounttransactions/obj/";
+                // String accounttransactionsAsObj_baseurl =
+                // "http://localhost:8093/accounttransactions/obj/";
+                String accounttransactionsAsObj_baseurl = "http://prc-account-transactions/accounttransactions/obj/";
+
                 ResponseEntity<listofaccounttransactionsmodel> responseEntity2 = rt.exchange(
                                 accounttransactionsAsObj_baseurl + "1", HttpMethod.GET, requestEntity,
                                 listofaccounttransactionsmodel.class);

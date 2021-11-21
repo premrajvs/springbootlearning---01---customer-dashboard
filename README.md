@@ -54,3 +54,15 @@ Rest Template can be implemented using 3 methods
 I used Exchange method so far to create the rest template and later used a bean to create the object and auto wire it.
 
 As next steps, I want to avoid using List of objects as a return type from the processor service.
+
+# Service Discovery
+Refer to https://github.com/premrajvs/springbootlearning---04---EurekaDiscoveryServer for details
+
+# Resiliency and Fault Tolerance
+Fault Tolerance : What is the impact to your service when its downstream services fail ?
+Resiliency : How many faults can your service handle ? Can your service recover seamlessly without manual intervention ?
+
+First step, in making the services more available is to have more than 1 instance of the service running. This helps in load balancing and if one instance is down, still the overall business transaction do not get impacted
+
+1. java -jar account-details-0.0.1-SNAPSHOT.jar --server.port=8094 --> Now, there are 2 instances of account details service
+2. Add @Loadbalanced annotation to the RestTemplate Bean -> This does service discovery. This tells that whatever URL is am giving you is not the actual URL. Go to Eureka Server and get the actual URL. 
