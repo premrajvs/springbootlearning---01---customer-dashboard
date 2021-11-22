@@ -12,6 +12,7 @@ import com.performanceengineering.customerdashboard.model.accountdetailsmodel;
 import com.performanceengineering.customerdashboard.model.accounttransactionsmodel;
 import com.performanceengineering.customerdashboard.model.dashboarditemmodel;
 import com.performanceengineering.customerdashboard.model.listofaccounttransactionsmodel;
+import com.performanceengineering.customerdashboard.template.customresttemplate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;

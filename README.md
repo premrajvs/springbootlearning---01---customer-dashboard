@@ -62,7 +62,15 @@ Refer to https://github.com/premrajvs/springbootlearning---04---EurekaDiscoveryS
 Fault Tolerance : What is the impact to your service when its downstream services fail ?
 Resiliency : How many faults can your service handle ? Can your service recover seamlessly without manual intervention ?
 
-First step, in making the services more available is to have more than 1 instance of the service running. This helps in load balancing and if one instance is down, still the overall business transaction do not get impacted
+1. First step, in making the services more available is to have more than 1 instance of the service running. This helps in load balancing and if one instance is down, still the overall business transaction do not get impacted
 
 1. java -jar account-details-0.0.1-SNAPSHOT.jar --server.port=8094 --> Now, there are 2 instances of account details service
 2. Add @Loadbalanced annotation to the RestTemplate Bean -> This does service discovery. This tells that whatever URL is am giving you is not the actual URL. Go to Eureka Server and get the actual URL. 
+Add these lines to application.properties file
+eureka.client.register-with-eureka=true
+eureka.client.fetch-registry=true
+
+2. What if the downstreams services are slow ?
+Let's say Account transactions ideally responds in 500 ms but suddently taking more than 5 seconds to respond and account details are working fine. Let's understand how Threads work.
+When web server receives a request, it spins up a new thread to process that request. When a services receives 1 TPS load, it creates 1 thread every second. If the transaction completes in 1 sec, webserver will have approx. 1 running thread to process the incoming requests. If the transaction takes 100 sec to complete, within 100 sec, 100 threads would be running in the webserver. If there is no max thread count defined, webserver can spin up new threads till it reaches 100% CPU. But mostly thread pools will be defined and if the max thread count is 50, new requests will return error. To demo this, 
+    1. Moving rest template to a separate class
